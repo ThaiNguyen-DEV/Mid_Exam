@@ -12,7 +12,8 @@
       <div class="box">
          <img src="images/clock-icon.png" alt="">
          <h3>opening hours</h3>
-         <p>7:00am to 00:00pm</p>
+         <p>7:00am to 1:00pm</p>
+         <p>3:00pm to 11:00pm</p>
       </div>
 
       <div class="box">
