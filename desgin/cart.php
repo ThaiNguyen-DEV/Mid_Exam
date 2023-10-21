@@ -19,19 +19,19 @@
 
    <section class="flex">
 
-      <a href="home.html" class="logo">yum-yum 😋</a>
+      <a href="home.php" class="logo">yum-yum 😋</a>
 
       <nav class="navbar">
-         <a href="home.html">home</a>
-         <a href="about.html">about</a>
-         <a href="menu.html">menu</a>
-         <a href="orders.html">orders</a>
-         <a href="contact.html">contact</a>
+         <a href="home.php">home</a>
+         <a href="about.php">about</a>
+         <a href="menu.php">menu</a>
+         <a href="orders.php">orders</a>
+         <a href="contact.php">contact</a>
       </nav>
 
       <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
+         <a href="search.php"><i class="fas fa-search"></i></a>
+         <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
          <div id="user-btn" class="fas fa-user"></div>
          <div id="menu-btn" class="fas fa-bars"></div>
       </div>
@@ -39,10 +39,10 @@
       <div class="profile">
          <p class="name">shaikh anas</p>
          <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
+            <a href="profile.php" class="btn">profile</a>
             <a href="#" class="delete-btn">logout</a>
          </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+         <p class="account"><a href="login.php">login</a> or <a href="register.php">register</a></p>
       </div>
 
    </section>
@@ -51,7 +51,7 @@
 
 <div class="heading">
    <h3>shopping cart</h3>
-   <p><a href="home.html">home </a> <span> / cart</span></p>
+   <p><a href="home.php">home </a> <span> / cart</span></p>
 </div>
 
 <section class="products">
@@ -60,14 +60,14 @@
 
    <div class="cart-total">
       <p>grand total : <span>$9/-</span></p>
-      <a href="checkout.html" class="btn">checkout orders</a>
+      <a href="checkout.php" class="btn">checkout orders</a>
       </div>
    </div>
 
    <div class="box-container">
 
       <div class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
+         <a href="quick_view.php" class="fas fa-eye"></a>
          <button class="fas fa-times" type="submit" name="delete" onclick="return confirm('delete this item?')"></button>
          <img src="uploaded_img/pizza-1.png" alt="">
          <div class="name">delicious pizza 01</div>
@@ -80,7 +80,7 @@
       </div>
 
       <div class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
+         <a href="quick_view.php" class="fas fa-eye"></a>
          <button class="fas fa-times" type="submit" name="delete" onclick="return confirm('delete this item?')"></button>
          <img src="uploaded_img/dish-2.png" alt="">
          <div class="name">main dish 02</div>
@@ -93,7 +93,7 @@
       </div>
 
       <div class="box">
-         <a href="quick_view.html" class="fas fa-eye"></a>
+         <a href="quick_view.php" class="fas fa-eye"></a>
          <button class="fas fa-times" type="submit" name="delete" onclick="return confirm('delete this item?')"></button>
          <img src="uploaded_img/dessert-1.png" alt="">
          <div class="name">delicious dessert 01</div>

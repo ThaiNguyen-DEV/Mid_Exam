@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>contact us</title>
+   <title>my profile</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -19,19 +19,19 @@
 
    <section class="flex">
 
-      <a href="home.html" class="logo">yum-yum 😋</a>
+      <a href="home.php" class="logo">yum-yum 😋</a>
 
       <nav class="navbar">
-         <a href="home.html">home</a>
-         <a href="about.html">about</a>
-         <a href="menu.html">menu</a>
-         <a href="orders.html">orders</a>
-         <a href="contact.html">contact</a>
+         <a href="home.php">home</a>
+         <a href="about.php">about</a>
+         <a href="menu.php">menu</a>
+         <a href="orders.php">orders</a>
+         <a href="contact.php">contact</a>
       </nav>
 
       <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
+         <a href="search.php"><i class="fas fa-search"></i></a>
+         <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
          <div id="user-btn" class="fas fa-user"></div>
          <div id="menu-btn" class="fas fa-bars"></div>
       </div>
@@ -39,10 +39,10 @@
       <div class="profile">
          <p class="name">shaikh anas</p>
          <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
+            <a href="profile.php" class="btn">profile</a>
             <a href="#" class="delete-btn">logout</a>
          </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+         <p class="account"><a href="login.php">login</a> or <a href="register.php">register</a></p>
       </div>
 
    </section>
@@ -50,34 +50,23 @@
 </header>
 
 <div class="heading">
-   <h3>contact us</h3>
-   <p><a href="home.html">home </a> <span> / contact</span></p>
+   <h3>my profile</h3>
+   <p><a href="home.php">home </a> <span> / profile</span></p>
 </div>
 
-<section class="contact">
+<section class="user-details">
 
-   <div class="row">
-
-      <div class="image">
-         <img src="images/contact-img.svg" alt="">
-      </div>
-
-      <form action="" method="post">
-         <h3>tell us something!</h3>
-         <input type="text" name="name" required placeholder="enter your name" maxlength="50" class="box">
-         <input type="number" name="number" required placeholder="enter your number" max="9999999999" min="0" class="box" onkeypress="if(this.value.length == 10) return false;">
-         <input type="email" name="email" required placeholder="enter your email" maxlength="50" class="box">
-         <textarea name="msg" placeholder="enter your message" required class="box" cols="30" rows="10" maxlength="500"></textarea>
-         <input type="submit" value="send message" class="btn" name="send">
-      </form>
-
+   <div class="user">
+      <img src="images/user-icon.png" alt="">
+      <p><i class="fas fa-user"></i> <span>shaikh anas</span></p>
+      <p><i class="fas fa-phone"></i> <span>1234567890</span></p>
+      <p><i class="fas fa-envelope"></i> <span>shaikhanas@gmail.com</span></p>
+      <a href="update_profile.php" class="btn">update profile</a>
+      <p class="address"><i class="fas fa-map-marker-alt"></i> <span>flat no. 1, building no. 1, jogeshwari west, mumbai, india - 400104</span></p>
+      <a href="update_address.php" class="btn">update address</a>
    </div>
 
 </section>
-
-
-
-
 
 
 

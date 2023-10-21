@@ -19,19 +19,19 @@
 
    <section class="flex">
 
-      <a href="home.html" class="logo">yum-yum 😋</a>
+      <a href="home.php" class="logo">yum-yum 😋</a>
 
       <nav class="navbar">
-         <a href="home.html">home</a>
-         <a href="about.html">about</a>
-         <a href="menu.html">menu</a>
-         <a href="orders.html">orders</a>
-         <a href="contact.html">contact</a>
+         <a href="home.php">home</a>
+         <a href="about.php">about</a>
+         <a href="menu.php">menu</a>
+         <a href="orders.php">orders</a>
+         <a href="contact.php">contact</a>
       </nav>
 
       <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
+         <a href="search.php"><i class="fas fa-search"></i></a>
+         <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
          <div id="user-btn" class="fas fa-user"></div>
          <div id="menu-btn" class="fas fa-bars"></div>
       </div>
@@ -39,10 +39,10 @@
       <div class="profile">
          <p class="name">shaikh anas</p>
          <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
+            <a href="profile.php" class="btn">profile</a>
             <a href="#" class="delete-btn">logout</a>
          </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+         <p class="account"><a href="login.php">login</a> or <a href="register.php">register</a></p>
       </div>
 
    </section>
@@ -51,7 +51,7 @@
 
 <div class="heading">
    <h3>your orders</h3>
-   <p><a href="home.html">home </a> <span> / orders</span></p>
+   <p><a href="home.php">home </a> <span> / orders</span></p>
 </div>
 
 <section class="orders">

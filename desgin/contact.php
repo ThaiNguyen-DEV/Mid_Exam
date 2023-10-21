@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>update profile</title>
+   <title>contact us</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -19,19 +19,19 @@
 
    <section class="flex">
 
-      <a href="home.html" class="logo">yum-yum 😋</a>
+      <a href="home.php" class="logo">yum-yum 😋</a>
 
       <nav class="navbar">
-         <a href="home.html">home</a>
-         <a href="about.html">about</a>
-         <a href="menu.html">menu</a>
-         <a href="orders.html">orders</a>
-         <a href="contact.html">contact</a>
+         <a href="home.php">home</a>
+         <a href="about.php">about</a>
+         <a href="menu.php">menu</a>
+         <a href="orders.php">orders</a>
+         <a href="contact.php">contact</a>
       </nav>
 
       <div class="icons">
-         <a href="search.html"><i class="fas fa-search"></i></a>
-         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
+         <a href="search.php"><i class="fas fa-search"></i></a>
+         <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
          <div id="user-btn" class="fas fa-user"></div>
          <div id="menu-btn" class="fas fa-bars"></div>
       </div>
@@ -39,30 +39,43 @@
       <div class="profile">
          <p class="name">shaikh anas</p>
          <div class="flex">
-            <a href="profile.html" class="btn">profile</a>
+            <a href="profile.php" class="btn">profile</a>
             <a href="#" class="delete-btn">logout</a>
          </div>
-         <p class="account"><a href="login.html">login</a> or <a href="register.html">register</a></p>
+         <p class="account"><a href="login.php">login</a> or <a href="register.php">register</a></p>
       </div>
 
    </section>
 
 </header>
 
-<section class="form-container">
+<div class="heading">
+   <h3>contact us</h3>
+   <p><a href="home.php">home </a> <span> / contact</span></p>
+</div>
 
-   <form action="" method="POST">
-      <h3>update profile</h3>
-      <input type="text" required maxlength="20" name="name" placeholder="enter your name" class="box" oninput="this.value = this.value.replace(/\s/g, '')" value="shaikh anas">
-      <input type="email" required maxlength="50" name="email" placeholder="enter your email" class="box" oninput="this.value = this.value.replace(/\s/g, '')" value="shaikhanas@gmai.com">
-      <input type="numner" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" placeholder="enter your number" required class="box" name="number" value="1234567890">
-      <input type="password" maxlength="20" name="old_pass" placeholder="enter your old password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" maxlength="20" name="new_pass" placeholder="enter your new password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" maxlength="20" name="confirm_pass" placeholder="confirm your new password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="submit" value="update now" class="btn" name="submit">
-   </form>
+<section class="contact">
+
+   <div class="row">
+
+      <div class="image">
+         <img src="images/contact-img.svg" alt="">
+      </div>
+
+      <form action="" method="post">
+         <h3>tell us something!</h3>
+         <input type="text" name="name" required placeholder="enter your name" maxlength="50" class="box">
+         <input type="number" name="number" required placeholder="enter your number" max="9999999999" min="0" class="box" onkeypress="if(this.value.length == 10) return false;">
+         <input type="email" name="email" required placeholder="enter your email" maxlength="50" class="box">
+         <textarea name="msg" placeholder="enter your message" required class="box" cols="30" rows="10" maxlength="500"></textarea>
+         <input type="submit" value="send message" class="btn" name="send">
+      </form>
+
+   </div>
 
 </section>
+
+
 
 
 
