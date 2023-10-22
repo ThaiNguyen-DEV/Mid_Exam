@@ -20,7 +20,7 @@ if(isset($_SESSION['user_id'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>search page</title>
+   <title>menu</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -35,26 +35,21 @@ if(isset($_SESSION['user_id'])){
 <?php include 'components/user_header.php'; ?>
 <!-- header section ends -->
 
-<!-- search form section starts  -->
+<div class="heading">
+   <h3>our menu</h3>
+   <p><a href="home.php">home</a> <span> / menu</span></p>
+</div>
 
-<section class="search-form">
-   <form method="post" action="">
-      <input type="text" name="search_box" placeholder="search here..." class="box">
-      <button type="submit" name="search_btn" class="fas fa-search"></button>
-   </form>
-</section>
+<!-- menu section starts  -->
 
-<!-- search form section ends -->
+<section class="products">
 
+   <h1 class="title">latest dishes</h1>
 
-<section class="products" style="min-height: 100vh; padding-top:0;">
-
-<div class="box-container">
+   <div class="box-container">
 
       <?php
-         if(isset($_POST['search_box']) OR isset($_POST['search_btn'])){
-         $search_box = $_POST['search_box'];
-         $select_products = $conn->prepare("SELECT * FROM `products` WHERE name LIKE '%{$search_box}%'");
+         $select_products = $conn->prepare("SELECT * FROM `products`");
          $select_products->execute();
          if($select_products->rowCount() > 0){
             while($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)){
@@ -71,7 +66,7 @@ if(isset($_SESSION['user_id'])){
          <div class="name"><?= $fetch_products['name']; ?></div>
          <div class="flex">
             <div class="price"><span>$</span><?= $fetch_products['price']; ?></div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" maxlength="2">
+            <input type="number" name="qty" class="qty" min="1" max="99" value="1" maxlength="2"">
          </div>
       </form>
       <?php
@@ -79,12 +74,27 @@ if(isset($_SESSION['user_id'])){
          }else{
             echo '<p class="empty">no products added yet!</p>';
          }
-      }
       ?>
 
    </div>
 
 </section>
+
+
+<!-- menu section ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -99,6 +109,7 @@ if(isset($_SESSION['user_id'])){
 <!-- footer section starts  -->
 <?php include 'components/footer.php'; ?>
 <!-- footer section ends -->
+
 
 
 

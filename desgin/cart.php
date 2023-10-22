@@ -1,10 +1,50 @@
+<?php
+
+include 'components/connect.php';
+
+session_start();
+
+if(isset($_SESSION['user_id'])){
+   $user_id = $_SESSION['user_id'];
+}else{
+   $user_id = '';
+   header('location:home.php');
+};
+
+if(isset($_POST['delete'])){
+   $cart_id = $_POST['cart_id'];
+   $delete_cart_item = $conn->prepare("DELETE FROM `cart` WHERE id = ?");
+   $delete_cart_item->execute([$cart_id]);
+   $message[] = 'cart item deleted!';
+}
+
+if(isset($_POST['delete_all'])){
+   $delete_cart_item = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
+   $delete_cart_item->execute([$user_id]);
+   // header('location:cart.php');
+   $message[] = 'deleted all from cart!';
+}
+
+if(isset($_POST['update_qty'])){
+   $cart_id = $_POST['cart_id'];
+   $qty = $_POST['qty'];
+   $qty = filter_var($qty, FILTER_SANITIZE_STRING);
+   $update_qty = $conn->prepare("UPDATE `cart` SET quantity = ? WHERE id = ?");
+   $update_qty->execute([$qty, $cart_id]);
+   $message[] = 'cart quantity updated';
+}
+
+$grand_total = 0;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>my cart</title>
+   <title>cart</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -15,112 +55,90 @@
 </head>
 <body>
    
-<header class="header">
-
-   <section class="flex">
-
-      <a href="home.php" class="logo">yum-yum 😋</a>
-
-      <nav class="navbar">
-         <a href="home.php">home</a>
-         <a href="about.php">about</a>
-         <a href="menu.php">menu</a>
-         <a href="orders.php">orders</a>
-         <a href="contact.php">contact</a>
-      </nav>
-
-      <div class="icons">
-         <a href="search.php"><i class="fas fa-search"></i></a>
-         <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
-      </div>
-
-      <div class="profile">
-         <p class="name">shaikh anas</p>
-         <div class="flex">
-            <a href="profile.php" class="btn">profile</a>
-            <a href="#" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.php">login</a> or <a href="register.php">register</a></p>
-      </div>
-
-   </section>
-
-</header>
+<!-- header section starts  -->
+<?php include 'components/user_header.php'; ?>
+<!-- header section ends -->
 
 <div class="heading">
    <h3>shopping cart</h3>
-   <p><a href="home.php">home </a> <span> / cart</span></p>
+   <p><a href="home.php">home</a> <span> / cart</span></p>
 </div>
+
+<!-- shopping cart section starts  -->
 
 <section class="products">
 
    <h1 class="title">your cart</h1>
 
-   <div class="cart-total">
-      <p>grand total : <span>$9/-</span></p>
-      <a href="checkout.php" class="btn">checkout orders</a>
-      </div>
-   </div>
-
    <div class="box-container">
 
-      <div class="box">
-         <a href="quick_view.php" class="fas fa-eye"></a>
-         <button class="fas fa-times" type="submit" name="delete" onclick="return confirm('delete this item?')"></button>
-         <img src="uploaded_img/pizza-1.png" alt="">
-         <div class="name">delicious pizza 01</div>
+      <?php
+         $grand_total = 0;
+         $select_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+         $select_cart->execute([$user_id]);
+         if($select_cart->rowCount() > 0){
+            while($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)){
+      ?>
+      <form action="" method="post" class="box">
+         <input type="hidden" name="cart_id" value="<?= $fetch_cart['id']; ?>">
+         <a href="quick_view.php?pid=<?= $fetch_cart['pid']; ?>" class="fas fa-eye"></a>
+         <button type="submit" class="fas fa-times" name="delete" onclick="return confirm('delete this item?');"></button>
+         <img src="uploaded_img/<?= $fetch_cart['image']; ?>" alt="">
+         <div class="name"><?= $fetch_cart['name']; ?></div>
          <div class="flex">
-            <div class="price"><span>$</span>3</div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-            <button type="submit" class="fas fa-edit"></button>
+            <div class="price"><span>$</span><?= $fetch_cart['price']; ?></div>
+            <input type="number" name="qty" class="qty" min="1" max="99" value="<?= $fetch_cart['quantity']; ?>" maxlength="2">
+            <button type="submit" class="fas fa-edit" name="update_qty"></button>
          </div>
-         <div class="sub-total">sub total : <span>$3</span></div>
-      </div>
+         <div class="sub-total"> sub total : <span>$<?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</span> </div>
+      </form>
+      <?php
+               $grand_total += $sub_total;
+            }
+         }else{
+            echo '<p class="empty">your cart is empty</p>';
+         }
+      ?>
 
-      <div class="box">
-         <a href="quick_view.php" class="fas fa-eye"></a>
-         <button class="fas fa-times" type="submit" name="delete" onclick="return confirm('delete this item?')"></button>
-         <img src="uploaded_img/dish-2.png" alt="">
-         <div class="name">main dish 02</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3</div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-            <button type="submit" class="fas fa-edit"></button>
-         </div>
-         <div class="sub-total">sub total : <span>$3</span></div>
-      </div>
+   </div>
 
-      <div class="box">
-         <a href="quick_view.php" class="fas fa-eye"></a>
-         <button class="fas fa-times" type="submit" name="delete" onclick="return confirm('delete this item?')"></button>
-         <img src="uploaded_img/dessert-1.png" alt="">
-         <div class="name">delicious dessert 01</div>
-         <div class="flex">
-            <div class="price"><span>$</span>3</div>
-            <input type="number" name="qty" class="qty" min="1" max="99" value="1" onkeypress="if(this.value.length == 2) return false;">
-            <button type="submit" class="fas fa-edit"></button>
-         </div>
-         <div class="sub-total">sub total : <span>$3</span></div>
-      </div>
-
+   <div class="cart-total">
+      <p>cart total : <span>$<?= $grand_total; ?></span></p>
+      <a href="checkout.php" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>">proceed to checkout</a>
    </div>
 
    <div class="more-btn">
-      <a href="#" class="delete-btn" onclick="return confirm('delete all from cart?');">delete all</a>
+      <form action="" method="post">
+         <button type="submit" class="delete-btn <?= ($grand_total > 1)?'':'disabled'; ?>" name="delete_all" onclick="return confirm('delete all from cart?');">delete all</button>
+      </form>
+      <a href="menu.php" class="btn">continue shopping</a>
    </div>
 
 </section>
 
+<!-- shopping cart section ends -->
 
+
+
+
+
+
+
+
+
+
+<!-- footer section starts  -->
 <?php include 'components/footer.php'; ?>
+<!-- footer section ends -->
 
 
-<!-- <div class="loader">
-   <img src="images/loader.gif" alt="">
-</div> -->
 
+
+
+
+
+
+<!-- custom js file link  -->
 <script src="js/script.js"></script>
 
 </body>
