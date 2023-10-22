@@ -10,7 +10,14 @@ if(isset($_SESSION['user_id'])){
    $user_id = '';
 };
 
+<<<<<<< HEAD
 ?>
+=======
+// include 'components/add_cart.php';
+
+?>
+
+>>>>>>> 515c681f20dc338536567ffe8a6d525919b955e5
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +36,10 @@ if(isset($_SESSION['user_id'])){
 <body>
    
 <?php include 'components/user_header.php'; ?>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 515c681f20dc338536567ffe8a6d525919b955e5
 
 <div class="heading">
    <h3>contact us</h3>

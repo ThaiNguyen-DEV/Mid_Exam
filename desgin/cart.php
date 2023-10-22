@@ -8,6 +8,7 @@ if(isset($_SESSION['user_id'])){
    $user_id = $_SESSION['user_id'];
 }else{
    $user_id = '';
+<<<<<<< HEAD
    header('location:home.php');
 };
 
@@ -35,6 +36,11 @@ if(isset($_POST['update_qty'])){
 }
 
 $grand_total = 0;
+=======
+};
+
+// include 'components/add_cart.php';
+>>>>>>> 515c681f20dc338536567ffe8a6d525919b955e5
 
 ?>
 
@@ -55,9 +61,14 @@ $grand_total = 0;
 </head>
 <body>
    
+<<<<<<< HEAD
 <!-- header section starts  -->
 <?php include 'components/user_header.php'; ?>
 <!-- header section ends -->
+=======
+<?php include 'components/user_header.php'; ?>
+
+>>>>>>> 515c681f20dc338536567ffe8a6d525919b955e5
 
 <div class="heading">
    <h3>shopping cart</h3>

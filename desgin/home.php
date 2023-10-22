@@ -154,7 +154,7 @@ if(isset($_SESSION['user_id'])){
    </div>
 
    <div class="more-btn">
-      <a href="menu.php" class="btn">veiw all</a>
+      <a href="menu.php" class="btn">view all</a>
    </div>
 
 </section>
