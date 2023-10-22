@@ -1,3 +1,19 @@
+<?php
+
+include 'components/connect.php';
+
+session_start();
+
+if(isset($_SESSION['user_id'])){
+   $user_id = $_SESSION['user_id'];
+}else{
+   $user_id = '';
+};
+
+// include 'components/add_cart.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,39 +31,8 @@
 </head>
 <body>
    
-<header class="header">
+<?php include 'components/user_header.php'; ?>
 
-   <section class="flex">
-
-      <a href="home.php" class="logo">yum-yum 😋</a>
-
-      <nav class="navbar">
-         <a href="home.php">home</a>
-         <a href="about.php">about</a>
-         <a href="menu.php">menu</a>
-         <a href="orders.php">orders</a>
-         <a href="contact.php">contact</a>
-      </nav>
-
-      <div class="icons">
-         <a href="search.php"><i class="fas fa-search"></i></a>
-         <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
-      </div>
-
-      <div class="profile">
-         <p class="name">shaikh anas</p>
-         <div class="flex">
-            <a href="profile.php" class="btn">profile</a>
-            <a href="#" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.php">login</a> or <a href="register.php">register</a></p>
-      </div>
-
-   </section>
-
-</header>
 
 <div class="heading">
    <h3>my profile</h3>
@@ -57,77 +42,40 @@
 <section class="user-details">
 
    <div class="user">
+      <?php
+            $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+            $select_profile->execute([$user_id]);
+            if($select_profile->rowCount() > 0){
+               $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+      ?>
       <img src="images/user-icon.png" alt="">
-      <p><i class="fas fa-user"></i> <span>shaikh anas</span></p>
-      <p><i class="fas fa-phone"></i> <span>1234567890</span></p>
-      <p><i class="fas fa-envelope"></i> <span>shaikhanas@gmail.com</span></p>
+      <p><i class="fas fa-user"></i> <span><?= $fetch_profile['name']; ?></span></p>
+      <p><i class="fas fa-phone"></i> <span><?= $fetch_profile['number']; ?></span></p>
+      <p><i class="fas fa-envelope"></i> <span><?= $fetch_profile['email']; ?></span></p>
+      <p class="address"><i class="fas fa-map-marker-alt"></i> <span><?= $fetch_profile['address']; ?></span></p>
+      <!-- <a href="update_address.php" class="btn">update address</a> -->
       <a href="update_profile.php" class="btn">update profile</a>
-      <p class="address"><i class="fas fa-map-marker-alt"></i> <span>flat no. 1, building no. 1, jogeshwari west, mumbai, india - 400104</span></p>
-      <a href="update_address.php" class="btn">update address</a>
+
+      <?php
+            }else{
+         ?>
+            <p class="name">please login first!</p>
+            <a href="login.php" class="btn">login</a>
+         <?php
+          }
+         ?>
    </div>
 
 </section>
 
 
 
+<?php include 'components/footer.php'; ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<footer class="footer">
-
-   <section class="box-container">
-
-      <div class="box">
-         <img src="images/email-icon.png" alt="">
-         <h3>our email</h3>
-         <a href="mailto:shaikhanas@gmail.com">shaikhanas@gmail.com</a>
-         <a href="mailto:anasbhai@gmail.com">anasbhai@gmail.com</a>
-      </div>
-
-      <div class="box">
-         <img src="images/clock-icon.png" alt="">
-         <h3>opening hours</h3>
-         <p>00:07am to 00:10pm </p>
-      </div>
-
-      <div class="box">
-         <img src="images/map-icon.png" alt="">
-         <h3>our address</h3>
-         <a href="https://www.google.com/maps">mumbai, india - 400104</a>
-      </div>
-
-      <div class="box">
-         <img src="images/phone-icon.png" alt="">
-         <h3>our number</h3>
-         <a href="tel:1234567890">+123-456-7890</a>
-         <a href="tel:1112223333">+111-222-3333</a>
-      </div>
-
-   </section>
-
-   <div class="credit">&copy; copyright @ 2022 by <span>mr. web designer</span> | all rights reserved!</div>
-
-</footer>
-
-<div class="loader">
+<!-- <div class="loader">
    <img src="images/loader.gif" alt="">
-</div>
+</div> -->
 
 <script src="js/script.js"></script>
 

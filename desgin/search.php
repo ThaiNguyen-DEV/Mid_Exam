@@ -1,3 +1,19 @@
+<?php
+
+include 'components/connect.php';
+
+session_start();
+
+if(isset($_SESSION['user_id'])){
+   $user_id = $_SESSION['user_id'];
+}else{
+   $user_id = '';
+};
+
+// include 'components/add_cart.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,39 +31,8 @@
 </head>
 <body>
    
-<header class="header">
+<?php include 'components/user_header.php'; ?>
 
-   <section class="flex">
-
-      <a href="home.php" class="logo">yum-yum 😋</a>
-
-      <nav class="navbar">
-         <a href="home.php">home</a>
-         <a href="about.php">about</a>
-         <a href="menu.php">menu</a>
-         <a href="orders.php">orders</a>
-         <a href="contact.php">contact</a>
-      </nav>
-
-      <div class="icons">
-         <a href="search.php"><i class="fas fa-search"></i></a>
-         <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(3)</span></a>
-         <div id="user-btn" class="fas fa-user"></div>
-         <div id="menu-btn" class="fas fa-bars"></div>
-      </div>
-
-      <div class="profile">
-         <p class="name">shaikh anas</p>
-         <div class="flex">
-            <a href="profile.php" class="btn">profile</a>
-            <a href="#" class="delete-btn">logout</a>
-         </div>
-         <p class="account"><a href="login.php">login</a> or <a href="register.php">register</a></p>
-      </div>
-
-   </section>
-
-</header>
 
 <section class="search-form">
    <form action="" method="post">
@@ -57,27 +42,6 @@
 </section>
 
 <section class="products" style="padding-top: 0; min-height: 100vh;"></section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

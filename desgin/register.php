@@ -14,14 +14,21 @@ if(isset($_POST['submit'])){
 
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
+
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
+
    $number = $_POST['number'];
    $number = filter_var($number, FILTER_SANITIZE_STRING);
+
    $pass = sha1($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+
    $cpass = sha1($_POST['cpass']);
    $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+
+   $place = $_POST['place'];
+   $place = filter_var($place, FILTER_SANITIZE_STRING);
 
    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? OR number = ?");
    $select_user->execute([$email, $number]);
@@ -33,8 +40,8 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $message[] = 'confirm password not matched!';
       }else{
-         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, number, password) VALUES(?,?,?,?)");
-         $insert_user->execute([$name, $email, $number, $cpass]);
+         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, number, password, address) VALUES(?,?,?,?,?)");
+         $insert_user->execute([$name, $email, $number, $cpass, $place]);
          $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ?");
          $select_user->execute([$email, $pass]);
          $row = $select_user->fetch(PDO::FETCH_ASSOC);
@@ -79,6 +86,7 @@ if(isset($_POST['submit'])){
       <input type="number" name="number" required placeholder="enter your number" class="box" min="0" max="9999999999" maxlength="10">
       <input type="password" name="pass" required placeholder="enter your password" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="password" name="cpass" required placeholder="confirm your password" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="text" name="place" required placeholder="enter your place" class="box" maxlength="50">
       <input type="submit" value="register now" name="submit" class="btn">
       <p>already have an account? <a href="login.php">login now</a></p>
    </form>
