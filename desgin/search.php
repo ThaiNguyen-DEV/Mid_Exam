@@ -31,16 +31,13 @@ if(isset($_SESSION['user_id'])){
 </head>
 <body>
    
-<<<<<<< HEAD
 <!-- header section starts  -->
 <?php include 'components/user_header.php'; ?>
 <!-- header section ends -->
 
 <!-- search form section starts  -->
-=======
 <?php include 'components/user_header.php'; ?>
 
->>>>>>> 515c681f20dc338536567ffe8a6d525919b955e5
 
 <section class="search-form">
    <form method="post" action="">
@@ -93,7 +90,6 @@ if(isset($_SESSION['user_id'])){
 
 
 
-<<<<<<< HEAD
 
 
 
@@ -113,7 +109,6 @@ if(isset($_SESSION['user_id'])){
 
 
 <!-- custom js file link  -->
-=======
 <footer class="footer">
 
    <section class="box-container">
